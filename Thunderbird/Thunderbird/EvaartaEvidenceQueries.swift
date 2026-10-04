@@ -50,7 +50,9 @@ enum EvaartaEvidenceQueries {
             evidenceCount: items.count,
             excerptCount: items.filter { $0.kind == .excerpt }.count,
             annotationCount: items.filter { $0.kind == .annotation }.count,
-            groupCount: 0,
+            groupCount: workspace.evidenceGroups.filter { group in
+                group.itemIds.contains { itemId in items.contains { $0.id == itemId } }
+            }.count,
             pages: Array(Set(items.compactMap { $0.anchor?.page })).sorted()
         )
     }

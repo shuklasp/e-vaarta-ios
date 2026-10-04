@@ -1,0 +1,3 @@
+import Foundation
+struct EvaartaQueuedOperation{let id:String;let operation:String;let payload:String;var attempts:Int;var lastError:String?}
+final class EvaartaOfflineQueue{private var entries:[EvaartaQueuedOperation]=[];func enqueue(operation:String,payload:String){entries.append(EvaartaQueuedOperation(id:UUID().uuidString,operation:operation,payload:payload,attempts:0,lastError:nil))};func peek()->EvaartaQueuedOperation?{entries.first};func removeHead(){if !entries.isEmpty{entries.removeFirst()}};func retryHead(_ error:String){guard !entries.isEmpty else{return};entries[0].attempts += 1;entries[0].lastError=error};func snapshot()->[EvaartaQueuedOperation]{entries}}
