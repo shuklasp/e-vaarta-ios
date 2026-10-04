@@ -3,8 +3,9 @@ import Foundation
 /// Portable semantic model for the e-Vaarta document workspace.
 /// The model intentionally keeps source anchors separate from presentation.
 struct EvaartaDocumentWorkspace: Codable, Identifiable {
-    static let modelVersion = 2
+    static let currentModelVersion = 2
 
+    var modelVersion: Int
     let id: String
     var name: String
     var description: String
@@ -12,6 +13,33 @@ struct EvaartaDocumentWorkspace: Codable, Identifiable {
     var items: [EvaartaWorkspaceItem]
     var evidenceGroups: [EvaartaEvidenceGroup]
     var links: [EvaartaWorkspaceLink]
+
+    enum CodingKeys: String, CodingKey {
+        case modelVersion, id, name, description, documents, items, evidenceGroups, links
+    }
+
+    init(id: String, name: String, description: String, documents: [EvaartaDocument], items: [EvaartaWorkspaceItem], evidenceGroups: [EvaartaEvidenceGroup] = [], links: [EvaartaWorkspaceLink], modelVersion: Int = Self.currentModelVersion) {
+        self.modelVersion = modelVersion
+        self.id = id
+        self.name = name
+        self.description = description
+        self.documents = documents
+        self.items = items
+        self.evidenceGroups = evidenceGroups
+        self.links = links
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        modelVersion = try values.decodeIfPresent(Int.self, forKey: .modelVersion) ?? 1
+        id = try values.decode(String.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        description = try values.decodeIfPresent(String.self, forKey: .description) ?? ""
+        documents = try values.decodeIfPresent([EvaartaDocument].self, forKey: .documents) ?? []
+        items = try values.decodeIfPresent([EvaartaWorkspaceItem].self, forKey: .items) ?? []
+        evidenceGroups = try values.decodeIfPresent([EvaartaEvidenceGroup].self, forKey: .evidenceGroups) ?? []
+        links = try values.decodeIfPresent([EvaartaWorkspaceLink].self, forKey: .links) ?? []
+    }
 }
 
 enum EvaartaDocumentKind: String, Codable {
