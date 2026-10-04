@@ -84,6 +84,11 @@ let package: Package = Package(
             resources: [
                 .process("Resources")
             ]),
+        .testTarget(
+            name: "CoreTests",
+            dependencies: [
+                "Core"
+            ]),
         .target(
             name: "Autoconfiguration",
             dependencies: [
