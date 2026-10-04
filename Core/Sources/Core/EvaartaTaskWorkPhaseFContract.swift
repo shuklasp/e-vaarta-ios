@@ -1,0 +1,2 @@
+import Foundation
+public enum EvaartaTaskWorkPhaseFContract{public static let capabilities=["work-graph","my-work","kanban","list","calendar","timeline","gantt","critical-path","assignment-engine","assignment-negotiation","capacity","workload","scheduling","what-if","project-command-center","portfolio","risk","workflow-builder","notifications","evidence-verification","offline-events","conflict-review","grounded-project-control","weekly-review"]}
