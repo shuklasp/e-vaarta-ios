@@ -3,13 +3,14 @@ import Foundation
 /// Portable semantic model for the e-Vaarta document workspace.
 /// The model intentionally keeps source anchors separate from presentation.
 struct EvaartaDocumentWorkspace: Codable, Identifiable {
-    static let modelVersion = 1
+    static let modelVersion = 2
 
     let id: String
     var name: String
     var description: String
     var documents: [EvaartaDocument]
     var items: [EvaartaWorkspaceItem]
+    var evidenceGroups: [EvaartaEvidenceGroup]
     var links: [EvaartaWorkspaceLink]
 }
 
@@ -61,6 +62,14 @@ enum EvaartaLinkKind: String, Codable {
     case contradicts
     case derivedFrom = "derived-from"
     case references
+}
+
+struct EvaartaEvidenceGroup: Codable, Identifiable {
+    let id: String
+    var name: String
+    var description: String
+    var documentId: String?
+    var itemIds: [String]
 }
 
 struct EvaartaWorkspaceLink: Codable, Identifiable {
