@@ -1,0 +1,2 @@
+import Foundation
+final class EvaartaOpenProtocolAdapter:EvaartaTransport { let id:String; private let available:()->Bool; private let sender:(EvaartaEnvelope) async->Result<Void,Error>; init(id:String,available:@escaping()->Bool,sender:@escaping(EvaartaEnvelope) async->Result<Void,Error>){self.id=id;self.available=available;self.sender=sender}; func isAvailable()->Bool{available()}; func send(_ e:EvaartaEnvelope) async->Result<Void,Error>{guard isAvailable() else{return .failure(EvaartaError.noTransport)};return await sender(e)} }
