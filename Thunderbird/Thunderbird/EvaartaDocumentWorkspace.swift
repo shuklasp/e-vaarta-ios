@@ -18,7 +18,7 @@ struct EvaartaDocumentWorkspace: Codable, Identifiable {
         case modelVersion, id, name, description, documents, items, evidenceGroups, links
     }
 
-    init(id: String, name: String, description: String, documents: [EvaartaDocument], items: [EvaartaWorkspaceItem], evidenceGroups: [EvaartaEvidenceGroup] = [], links: [EvaartaWorkspaceLink], modelVersion: Int = Self.currentModelVersion) {
+    init(id: String, name: String, description: String, documents: [EvaartaDocument], items: [EvaartaWorkspaceItem], evidenceGroups: [EvaartaEvidenceGroup] = [], links: [EvaartaWorkspaceLink], modelVersion: Int = EvaartaDocumentWorkspace.currentModelVersion) {
         self.modelVersion = modelVersion
         self.id = id
         self.name = name
