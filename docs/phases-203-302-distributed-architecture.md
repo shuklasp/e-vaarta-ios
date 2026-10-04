@@ -1,0 +1,1 @@
+Distributed protocol contract: local identity, signed/encrypted envelopes, capabilities, event journal, store-and-forward queue, Wi-Fi/Bluetooth peer discovery, email and capability-gated messenger adapters including WhatsApp/Arattai, and server-optional routing. Platform APIs and crypto providers are injected and fail closed when unavailable.
