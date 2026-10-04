@@ -1,0 +1,1 @@
+Runtime distributed layer: trusted-peer store, explicit user-approved pairing state, runtime orchestration, delivery receipts, and queue fallback. OS networking and cryptography remain injected providers; no unsupported provider automation is included.
