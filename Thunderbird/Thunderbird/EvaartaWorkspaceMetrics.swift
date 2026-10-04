@@ -1,0 +1,3 @@
+import Foundation
+struct EvaartaWorkspaceMetrics{let documents:Int;let items:Int;let annotations:Int;let excerpts:Int;let notes:Int;let links:Int;let evidenceGroups:Int;let collections:Int}
+extension EvaartaDocumentWorkspace{func metrics()->EvaartaWorkspaceMetrics{EvaartaWorkspaceMetrics(documents:documents.count,items:items.count,annotations:items.filter{$0.kind=="annotation"}.count,excerpts:items.filter{$0.kind=="excerpt"}.count,notes:items.filter{$0.kind=="note"}.count,links:links.count,evidenceGroups:evidenceGroups.count,collections:0)}}
